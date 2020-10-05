@@ -6,14 +6,15 @@ public class PhoneBook {
         1)increase the length of the 'sortByName' array (17th line)
         2)fill the book with empty strings (19th line)
         3)put the new book in verification (33rd line)
-        4)sort the new book (78st line)
+        4)put the new book in verification (72nd line)
+        5)sort the new book (81st line)
      */
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         String name;
         String phoneNumber;
-        String[][] phoneBook = new String[10][2];
-        String[][] phoneBookCopy = new String[20][2]; // if there are no empty slots in our book, we create a new one
+        String[][] phoneBook = new String[1][2];
+        String[][] phoneBookCopy = new String[2][2]; // if there are no empty slots in our book, we create a new one
         String[] sortByName = new String[phoneBook.length + phoneBookCopy.length]; // here we put all the names we have in alphabetical order ('list' method)
 
         // here we fill our phoneBook with empty strings (because by default empty strings are filled with 'null' value)
@@ -24,7 +25,6 @@ public class PhoneBook {
         for (String[] row : phoneBookCopy) {
             Arrays.fill(row, "");
         }
-
         // and here
         Arrays.fill(sortByName, "");
 
@@ -46,7 +46,7 @@ public class PhoneBook {
                     giveNumber = ifNameInBook(phoneBookCopy, name);
                 }
                 if (giveNumber.length() > 0) { // if yes, phone number length > 0
-                    System.out.println("Such a contact exists:\n" + giveNumber);
+                    System.out.println("Such a contact exists:" + giveNumber);
                 } else { // if the name is not in our phone book, we ask for a phone number
                     while (true) {
                         System.out.println("Enter a phone number:");
@@ -69,6 +69,9 @@ public class PhoneBook {
                 phoneNumber = formatPhoneNumber(name); // checking if the user entered the phone number
                 if (!phoneNumber.equals("")) { // if it is a phone number
                     String giveName = ifPhoneNumberInBook(phoneBook, phoneNumber);
+                    if (giveName.equals("")) { // if the phone number the user is looking for is not in 'phoneBook', we check 'phoneBookCopy', if not there too, we check the next array
+                        giveName = ifPhoneNumberInBook(phoneBookCopy, phoneNumber);
+                    }
                     System.out.println("Such a number exists: " + giveName);
                 } else { // if it is not
                     System.out.println("Your name was entered incorrectly");
@@ -136,7 +139,7 @@ public class PhoneBook {
             }
             // here we replace each 'X' in the 'result' variable with numbers from the 'cleanArray' array
             int s = 1;
-            for (int i : indexValues) {
+            for (int i = 0; i < indexValues.length; i++) {
                 result = result.replaceFirst(Character.toString(result.charAt(indexValues[i])), String.valueOf(cleanArray[s]));
                 s++;
             }
@@ -192,11 +195,11 @@ public class PhoneBook {
     // collect our names in the 'sortByName' array in alphabetical order
     public static void list(String[][] book, String[] sortByName) {
         int s = 0;
-        for (String[] rows : book) {
-            for (int j = 0; j < rows.length; j++) {
-                if (!rows[j].equals("")) { // if we find a contact (not an empty slot), we add it to the 'sortByName' array
+        for (int i = 0; i < book.length; i++) {
+            for (int j = 0; j < book[i].length; j++) {
+                if (!book[i][j].equals("")) { // if we find a contact (not an empty slot), we add it to the 'sortByName' array
                     if (sortByName[s].equals("")) {
-                        sortByName[s] = rows[j] + ": " + rows[j + 1];
+                        sortByName[s] = book[i][j] + ": " + book[i][j + 1];
                         s++;
                     }
                     break; // exit inner loop
@@ -208,9 +211,9 @@ public class PhoneBook {
 
     public static void printBook(String[] sortedByName) {
         System.out.println("\n\nThe phone book:"); // indent
-        for (String s : sortedByName) {
-            if (!s.equals("")) {
-                System.out.println(s);
+        for (int i = 0; i < sortedByName.length; i++) {
+            if (!sortedByName[i].equals("")) {
+                System.out.println(i);
             }
         }
     }
