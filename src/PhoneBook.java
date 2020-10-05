@@ -13,8 +13,8 @@ public class PhoneBook {
         Scanner s = new Scanner(System.in);
         String name;
         String phoneNumber;
-        String[][] phoneBook = new String[10][2];
-        String[][] phoneBookCopy = new String[20][2]; // if there are no empty slots in our book, we create a new one
+        String[][] phoneBook = new String[1][2];
+        String[][] phoneBookCopy = new String[2][2]; // if there are no empty slots in our book, we create a new one
         String[] sortByName = new String[phoneBook.length + phoneBookCopy.length]; // here we put all the names we have in alphabetical order ('list' method)
 
         // here we fill our phoneBook with empty strings (because by default empty strings are filled with 'null' value)
@@ -46,7 +46,7 @@ public class PhoneBook {
                     giveNumber = ifNameInBook(phoneBookCopy, name);
                 }
                 if (giveNumber.length() > 0) { // if yes, phone number length > 0
-                    System.out.println("Such a contact exists:" + giveNumber);
+                    System.out.println("Such a contact exists: " + giveNumber);
                 } else { // if the name is not in our phone book, we ask for a phone number
                     while (true) {
                         System.out.println("Enter a phone number:");
@@ -213,7 +213,7 @@ public class PhoneBook {
         System.out.println("\n\nThe phone book:"); // indent
         for (int i = 0; i < sortedByName.length; i++) {
             if (!sortedByName[i].equals("")) {
-                System.out.println(i);
+                System.out.println(sortedByName[i]);
             }
         }
     }
