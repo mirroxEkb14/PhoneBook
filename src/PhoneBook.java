@@ -3,8 +3,8 @@ import java.util.Arrays;
 public class PhoneBook {
     /*
     if you want to add one more book, you will need:
-        1)increase the length of the 'sortByName' array (17th line)
-        2)fill the book with empty strings (19th line)
+        1)increase the length of the 'sortByName' array (18th line)
+        2)fill the book with empty strings (20th line)
         3)put the new book in verification (33rd line)
         4)put the new book in verification (72nd line)
         5)sort the new book (81st line)
@@ -13,8 +13,8 @@ public class PhoneBook {
         Scanner s = new Scanner(System.in);
         String name;
         String phoneNumber;
-        String[][] phoneBook = new String[1][2];
-        String[][] phoneBookCopy = new String[2][2]; // if there are no empty slots in our book, we create a new one
+        String[][] phoneBook = new String[10][2];
+        String[][] phoneBookCopy = new String[20][2]; // if there are no empty slots in our book, we create a new one
         String[] sortByName = new String[phoneBook.length + phoneBookCopy.length]; // here we put all the names we have in alphabetical order ('list' method)
 
         // here we fill our phoneBook with empty strings (because by default empty strings are filled with 'null' value)
